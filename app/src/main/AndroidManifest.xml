@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sunnyruan.simple_todo">
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name="org.litepal.LitePalApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.sunnyruan.simple_todo.MainTodo.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.sunnyruan.simple_todo.FinishList.FinishEventListActivity"
+            android:label="FinishEvent"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTask">
+        </activity>
+
+        <activity
+            android:name="com.sunnyruan.simple_todo.MainTodo.EventContentActivity"
+            android:theme="@style/eventContentTheme"
+            android:windowSoftInputMode="adjustPan|stateHidden">
+
+        </activity>
+
+        <activity android:name="com.sunnyruan.simple_todo.MainTodo.EditMenuActivity">
+
+        </activity>
+
+        <activity android:name="com.sunnyruan.simple_todo.MainTodo.EventListActivity" />
+
+        <activity
+            android:name=".MainTodo.SettingsActivity"
+            android:theme="@style/Theme.Settings"
+            android:launchMode="singleTask" />
+        <provider
+            android:authorities="applicationId.provider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name="com.sunnyruan.simple_todo.MainTodo.MotiveActivity" />
+
+        <activity
+            android:name="com.sunnyruan.simple_todo.MainTodo.ClockAlarmActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+
+        <receiver android:name=".Receiver.AlarmReceiver">
+            <intent-filter>
+                <action android:name="intent_alarm" />
+                <action android:name="intent_event" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".Fragment.EventContentFragment$MyAlarmReceiver">
+            <intent-filter>
+                <action android:name="com.todolist.alarm.clock"/>
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".Helpers.PictureHandle"/>
+
+    </application>
+
+</manifest>
